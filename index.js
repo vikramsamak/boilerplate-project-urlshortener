@@ -31,7 +31,7 @@ app.get("/api/hello", function (req, res) {
 app.post("/api/shorturl", function (req, res) {
   const { url } = req.body;
 
-  if (!validUrl.isUri(url)) {
+  if (!url || !validUrl.isUri(url)) {
     return res.json({ error: "invalid url" });
   }
 
