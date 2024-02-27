@@ -32,7 +32,7 @@ app.post("/api/shorturl", function (req, res) {
   const { url } = req.body;
 
   if (!validUrl.isUri(url)) {
-    return res.status(400).json({ error: "invalid url" });
+    return res.json({ error: "invalid url" });
   }
 
   const shortUrl = shortid.generate();
@@ -50,7 +50,7 @@ app.get("/api/shorturl/:shorturl", function (req, res) {
   if (original_url) {
     res.redirect(original_url);
   } else {
-    res.status(404).json({ error: "invalid url" });
+    res.json({ error: "invalid url" });
   }
 });
 
