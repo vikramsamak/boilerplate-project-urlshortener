@@ -31,7 +31,7 @@ app.post("/api/shorturl", function (req, res) {
   const { url } = req.body;
 
   if (!url || !validUrl.isUri(url)) {
-    return res.json({ error: "invalid url" });
+    res.json({ error: "invalid url" });
   }
 
   const shortUrl = shortid.generate();
