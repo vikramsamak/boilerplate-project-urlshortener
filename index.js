@@ -27,15 +27,15 @@ app.get("/api", function (req, res) {
 });
 
 // Endpoint to save shorturl
-app.post("/api/shorturl", (req, res) => {
+app.post('/api/shorturl', (req, res) => {
   const { url } = req.body;
   if (!url) {
-    return res.status(400).json({ error: "missing url" });
+    return res.json({ error: 'missing url' });
   }
   const urlObject = new URL(url);
   dns.lookup(urlObject.hostname, (err) => {
     if (err) {
-      return res.status(400).json({ error: "invalid url" });
+      return res.json({ error: 'invalid url' });
     }
     const shortUrl = shortid.generate();
     urlDatabase[shortUrl] = url;
